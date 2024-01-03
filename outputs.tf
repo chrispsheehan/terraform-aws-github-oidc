@@ -1,9 +1,9 @@
-output "branch-specific-defined-roles" {
+output "branch-specific-defined-role" {
   description = "CI defined actions role for specified branch"
-  value       = module.repos.branch-specific-defined-role
+  value       = module.terraform_branch_deploy_role.oidc-role-name
 }
 
-output "branch-agnositic-readonly-roles" {
+output "branch-agnostic-validate-role" {
   description = "CI readonly role for all brnaches"
-  value       = module.repos.branch-agnositic-readonly-role
+  value       = module.terraform_validate_role.oidc-role-name
 }
