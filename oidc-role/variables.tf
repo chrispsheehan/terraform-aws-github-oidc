@@ -12,12 +12,6 @@ variable "actions" {
   description = "The action(s) to be allowed i.e. [dynamodb:*]"
 }
 
-variable "resources" {
-  type        = list(string)
-  description = "The resources(s) to be allowed"
-  default     = ["*"]
-}
-
 variable "role-name" {
   type        = string
   description = "The role to use in GHA pipelines"
