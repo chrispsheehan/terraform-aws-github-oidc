@@ -93,7 +93,7 @@ jobs:
 ## Terraform defined branch and actions 
 
 - In this case we only allow `sts:GetCallerIdentity` as a proof of concept. Any other calls are blocked.
-  - This can of course be extended for `apply` and/or `destroy` jobs.
+  - This can of course be extended by adding scopes to `branch_actions` (above) to enable `plan`, `apply` and `destroy` jobs.
 - Only `main` can execute the below. All other branches are blocked.
 
 ```yaml
