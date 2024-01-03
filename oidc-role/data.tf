@@ -5,6 +5,7 @@ data "aws_iam_openid_connect_provider" "github" {
 data "aws_iam_policy_document" "this" {
   statement {
     actions   = concat(local.gha-actions, var.actions)
+    resources = var.resources
   }
 }
 

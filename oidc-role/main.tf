@@ -1,7 +1,7 @@
 resource "aws_iam_role" "this" {
   name               = var.role-name
   description        = "GitHub Actions AWS role for ${var.role-name}"
-  assume_role_policy = data.aws_iam_policy_document.this.json
+  assume_role_policy = data.aws_iam_policy_document.github_actions.json
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
