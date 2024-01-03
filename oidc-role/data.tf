@@ -4,14 +4,14 @@ data "aws_iam_openid_connect_provider" "github" {
 
 data "aws_iam_policy_document" "this" {
   statement {
-    actions   = var.actions
+    actions   = concat(local.gha-actions, var.actions)
     resources = var.resources
   }
 }
 
 data "aws_iam_policy_document" "github_actions" {
   statement {
-    actions = var.actions
+    actions = local.gha-actions
 
     principals {
       type        = "Federated"
