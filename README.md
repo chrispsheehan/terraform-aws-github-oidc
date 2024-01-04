@@ -9,6 +9,10 @@ The below will create two iam roles for `octo-org/octo-repo` (replace with your 
 
 ## terraform usage
 
+Run the below to create the OIDC provider and roles. This can live in it's own repo, separate to the code deployed via Github actions.
+
+*NOTE*: You may have an existing provider; in which case remove `aws_iam_openid_connect_provider.github` or alternatively [import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider#import).
+
 ```terraform
 locals {
   github_oidc_domain = "token.actions.githubusercontent.com"
@@ -92,7 +96,7 @@ jobs:
 
 ## Terraform defined branch and actions 
 
-- In the below job we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions. Any other actions are blocked.
+- In the below job we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions, as specified above. Any other actions are blocked.
 - Only `main` can execute the below. All other branches are blocked.
 
 ```yaml
