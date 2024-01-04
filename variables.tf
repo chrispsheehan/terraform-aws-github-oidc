@@ -1,5 +1,6 @@
 variable "github-oidc-domain" {
   type = string
+  description = "OIDC domain i.e. token.actions.githubusercontent.com"
 }
 
 variable "repo" {

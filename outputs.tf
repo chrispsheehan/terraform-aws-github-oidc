@@ -1,9 +1,9 @@
 output "branch-specific-defined-role" {
-  description = "CI defined actions role for specified branch"
+  description = "Github action role to run only defined actions (terraform deploy) for the specified branch"
   value       = module.terraform_branch_deploy_role.oidc-role-name
 }
 
 output "branch-agnostic-validate-role" {
-  description = "CI readonly role for all brnaches"
+  description = "Github action role to run terraform init/validate for all branches"
   value       = module.terraform_validate_role.oidc-role-name
 }
