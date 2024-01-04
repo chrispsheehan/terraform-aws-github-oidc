@@ -1,4 +1,4 @@
-# terraform-aws-github-oidc
+# Terraform AWS Github Action OIDC Roles module
 
 This module creates OIDC roles to be used in terraform related Github Actions. More details [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
 
@@ -7,7 +7,7 @@ The below will create two iam roles for `octo-org/octo-repo` (replace with your 
 - `octo-org-oidc-gha-validate-role`
 - `octo-org-oidc-gha-deploy-branch-role`
 
-## terraform usage
+## Usage
 
 Run the below to create the OIDC provider and roles. This can live in it's own repo, separate to the code deployed via Github actions.
 
@@ -49,7 +49,9 @@ output "branch-agnostic-validate-role" {
 }
 ```
 
-## Terraform init and validate
+## Github Actions
+
+### Init and validate
 
 - Any branch can run the below jobs.
 
@@ -95,13 +97,13 @@ jobs:
 
 ```
 
-## Terraform defined branch and actions 
+### Defined branch deployment
 
 - In the below job we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions, as specified above. Any other actions are blocked.
 - Only `main` can execute the below. All other branches are blocked.
 
 ```yaml
-name: Defined actions
+name: Defined branch deploy
 on:
   push:
     branches-ignore:
@@ -112,7 +114,7 @@ env:
   AWS_ACCOUNT_ID: ${{ vars.AWS_ACCOUNT_ID }}
 
 jobs:
-  terraform-defined-actions:
+  terraform-deploy:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
