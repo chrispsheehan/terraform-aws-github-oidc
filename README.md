@@ -30,7 +30,7 @@ module "example-oidc-roles" {
   role-name-base     = "octo-org-oidc-example"
   repo               = "octo-org/octo-repo"
   branch             = "main"
-  branch_actions     = ["sts:GetCallerIdentity"]
+  branch_actions     = ["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]
 }
 
 output "branch-specific-defined-role" {
@@ -92,8 +92,7 @@ jobs:
 
 ## Terraform defined branch and actions 
 
-- In this case we only allow `sts:GetCallerIdentity` as a proof of concept. Any other calls are blocked.
-  - This can of course be extended by adding scopes to `branch_actions` (above) to enable `plan`, `apply` and `destroy` jobs.
+- In this case we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions proof of concept. Any other calls are blocked.
 - Only `main` can execute the below. All other branches are blocked.
 
 ```yaml
@@ -121,6 +120,7 @@ jobs:
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/octo-org-oidc-gha-deploy-branch-role
           role-session-name: GitHubActions
 
-      - run: aws sts get-caller-identity
+      - run: terraform init
+      - run: terraform apply -auto-approve
 
 ```
