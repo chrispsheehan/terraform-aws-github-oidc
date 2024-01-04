@@ -1,6 +1,6 @@
 # terraform-aws-github-oidc
 
-This module creates OIDC roles to be used in terraform related Github Actions.
+This module creates OIDC roles to be used in terraform related Github Actions. More details [here](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
 
 The below will create two iam roles for `octo-org/octo-repo` (replace with your repo);
 
@@ -92,7 +92,7 @@ jobs:
 
 ## Terraform defined branch and actions 
 
-- In this case we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions proof of concept. Any other calls are blocked.
+- In the below job we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions. Any other actions are blocked.
 - Only `main` can execute the below. All other branches are blocked.
 
 ```yaml
