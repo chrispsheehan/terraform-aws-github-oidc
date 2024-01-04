@@ -28,7 +28,8 @@ resource "aws_iam_openid_connect_provider" "github" {
 module "example-oidc-roles" {
   depends_on = [aws_iam_openid_connect_provider.github]
 
-  source = "github.com/chrispsheehan/terraform-aws-github-oidc"
+  source  = "chrispsheehan/github-oidc/aws"
+  version = "1.0.0"
 
   github-oidc-domain = local.github_oidc_domain
   role-name-base     = "octo-org-oidc-example"
