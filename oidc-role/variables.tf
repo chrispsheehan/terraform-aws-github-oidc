@@ -13,7 +13,7 @@ variable "actions" {
 }
 
 variable "resources" {
-  type        = list(string)
+  type = list(string)
 }
 
 variable "role-name" {
