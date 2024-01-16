@@ -14,7 +14,7 @@ variable "branch" {
   default     = "main"
 }
 
-variable "branch_actions" {
+variable "branch-actions" {
   type        = list(string)
   description = "The action(s) to be allowed i.e. [dynamodb:*]"
 }

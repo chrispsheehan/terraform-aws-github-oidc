@@ -35,7 +35,7 @@ module "example-oidc-roles" {
   role-name-base     = "octo-org-oidc-example"
   repo               = "octo-org/octo-repo"
   branch             = "main"
-  branch_actions     = ["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]
+  branch-actions     = ["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]
 }
 
 output "branch-specific-defined-role" {
