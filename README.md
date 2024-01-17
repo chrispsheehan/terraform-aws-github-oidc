@@ -29,13 +29,14 @@ module "example-oidc-roles" {
   depends_on = [aws_iam_openid_connect_provider.github]
 
   source  = "chrispsheehan/github-oidc/aws"
-  version = "1.0.0"
+  version = "2.0.0"
 
   github-oidc-domain = local.github_oidc_domain
   role-name-base     = "octo-org-oidc-example"
   repo               = "octo-org/octo-repo"
   branch             = "main"
   branch-actions     = ["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]
+  repo-refs          = ["heads/main", "tags/*"]
 }
 
 output "branch-specific-defined-role" {
@@ -100,7 +101,7 @@ jobs:
 ### Defined branch deployment
 
 - In the below job we only allow `["dynamodb:*", "s3:*", "cloudfront:*", "wafv2:*", "acm:*", "route53:*"]` actions, as specified above. Any other actions are blocked.
-- Only `main` can execute the below. All other branches are blocked.
+- Only `main` (or new tags) can execute the below. All other branches are blocked.
 
 ```yaml
 name: Defined branch deploy

@@ -1,6 +1,6 @@
 output "branch-specific-defined-role" {
   description = "Github action role to run only defined actions (terraform deploy) for the specified branch"
-  value       = module.terraform_branch_deploy_role.oidc-role-name
+  value       = module.terraform_deploy_role.oidc-role-name
 }
 
 output "branch-agnostic-validate-role" {

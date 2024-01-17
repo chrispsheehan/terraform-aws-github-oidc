@@ -8,10 +8,10 @@ variable "repo" {
   description = "The target repo for OIDC access i.e octo-org/octo-repo"
 }
 
-variable "branch" {
-  type        = string
-  description = "The target branch for OIDC access i.e main or master"
-  default     = "main"
+variable "repo-refs" {
+  type        = list(string)
+  description = "The target branches or tags etc for OIDC access"
+  default     = ["heads/main"]
 }
 
 variable "branch-actions" {
