@@ -4,7 +4,7 @@ module "terraform_validate_role" {
   role-name          = "${var.role-name-base}-gha-validate-role"
   actions            = local.terraform-init-actions
   resources          = var.resources
-  repo-refs          = ["${var.repo}:*"]
+  repo-refs          = ["repo:${var.repo}:*"]
   github-oidc-domain = var.github-oidc-domain
 }
 
